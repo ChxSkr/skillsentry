@@ -83,6 +83,10 @@ It does **not** replace runtime sandboxing (e.g. detonation) or semantic LLM rev
 packed/encrypted payloads that only reconstruct at execution time may evade static rules.
 Use it as the cheap first gate in a defense-in-depth pipeline.
 
+## Reports
+
+- [Scan #001 — 238 skills from anthropics/skills, google/skills, obra/superpowers](reports/2026-11-skill-supply-chain-scan.md): zero actual malware found; every CRITICAL manually reviewed; methodology and limitations included.
+
 ## Development
 
 ```bash

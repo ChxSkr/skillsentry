@@ -16,7 +16,7 @@ jobs:
       - name: Install
         run: pip install -e .
       - name: Self-scan (dogfooding)
-        run: skillsentry scan . --fail-on high -e README.md -e skillsentry/rules.py -e tests/test_scanner.py -e "examples/**"
+        run: skillsentry scan . --fail-on high -e README.md -e skillsentry/rules.py -e tests/test_scanner.py -e "examples/**" -e "reports/**"
       - name: Scan malicious example must fail
         run: |
           if skillsentry scan examples/malicious-skill --fail-on high; then
