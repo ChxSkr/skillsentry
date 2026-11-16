@@ -1,0 +1,35 @@
+name: "SkillSentry Scan"
+description: "Scan AI agent skill packages for supply-chain risks (credential theft, exfiltration, obfuscated payloads, prompt injection)."
+branding:
+  icon: "shield"
+  color: "red"
+
+inputs:
+  path:
+    description: "Directory (skill package) to scan"
+    required: true
+    default: "."
+  fail-on:
+    description: "Exit non-zero when verdict reaches this level: never | low | medium | high | critical"
+    required: false
+    default: "high"
+  format:
+    description: "Output format: text | json | sarif"
+    required: false
+    default: "text"
+
+outputs:
+  verdict:
+    description: "Overall verdict: clean | low | medium | high | critical"
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        pip install "${{ github.action_path }}"
+        verdict=$(skillsentry scan "${{ inputs.path }}" --format json --fail-on never \
+          | python -c "import json,sys; print(json.load(sys.stdin)['verdict'])")
+        echo "verdict=$verdict" >> "$GITHUB_OUTPUT"
+        skillsentry scan "${{ inputs.path }}" --format "${{ inputs.format }}" \
+          --fail-on "${{ inputs.fail-on }}"

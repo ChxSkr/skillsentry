@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e .
+      - name: Self-scan (dogfooding)
+        run: skillsentry scan . --fail-on high -e README.md -e skillsentry/rules.py -e tests/test_scanner.py -e "examples/**"
+      - name: Scan malicious example must fail
+        run: |
+          if skillsentry scan examples/malicious-skill --fail-on high; then
+            echo "::error::malicious example was NOT detected"; exit 1
+          fi
+      - name: Scan benign example must pass
+        run: skillsentry scan examples/benign-skill --fail-on high
+      - name: Run tests
+        run: |
+          pip install pytest
+          pytest -q

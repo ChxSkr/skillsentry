@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skillsentry"
+version = "0.1.0"
+description = "Static supply-chain risk scanner for AI agent skill packages (SKILL.md and bundled scripts)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ChxSkr" }]
+keywords = ["ai-agents", "security", "supply-chain", "skills", "mcp", "static-analysis"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.scripts]
+skillsentry = "skillsentry.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["skillsentry*"]
