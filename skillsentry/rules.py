@@ -56,7 +56,7 @@ RULES: tuple[Rule, ...] = tuple(
         # ---------- 凭据窃取 ----------
         ("CR-01", "credential_theft", Severity.CRITICAL,
          "读取 .env 环境变量文件",
-         r"""(?:cat|type|Get-Content|open|read)\s*\(?[^)\n]{0,40}['"]?\.env\b|\.env['"]?\s*\)""",
+         r"""(?:cat|type|Get-Content|open|read)\s*\(?[^)\n]{0,40}['"]?(?<!\w)\.env\b(?!\.example)|(?<!\w)\.env['"]?\s*\)\s*(?:$|,)""",
          False),
         ("CR-02", "credential_theft", Severity.CRITICAL,
          "读取 SSH 私钥",
@@ -111,7 +111,7 @@ RULES: tuple[Rule, ...] = tuple(
         # ---------- 混淆执行 ----------
         ("OB-01", "obfuscated_execution", Severity.CRITICAL,
          "解码后直接送入 shell/解释器执行",
-         r"""(?:echo\s+\S+|base64\s+-d|certutil\s+-decode|FromBase64String)[^\n|;]{0,80}\|\s*(?:ba)?sh\b|(?:echo|cat)\b[^|\n]*\|\s*python3?\b|b64decode[^)\n]{0,60}\)?\s*(?:\.decode|exec|eval)|exec\s*\(\s*base64""",
+         r"""(?:base64\s+(?:-d|--decode)|certutil\s+-decode)[^\n|;]{0,80}\|\s*(?:ba)?sh\b|(?:echo|cat|printf)\b[^|\n]{0,120}\|\s*(?:ba)?sh\b|(?:exec|eval)\s*\(\s*(?:__import__\([^)]*\)\.)?base64\.b64decode|b64decode[^)\n]{0,80}\b(?:exec|eval)\s*\(""",
          False),
         ("OB-02", "obfuscated_execution", Severity.CRITICAL,
          "解码十六进制/ROT13 等编码后执行",

@@ -1,0 +1,4056 @@
+{
+  "summary": {
+    "total_skills": 238,
+    "verdicts": {
+      "clean": 205,
+      "critical": 20,
+      "high": 11,
+      "medium": 2
+    },
+    "severity": {
+      "high": 222,
+      "medium": 9,
+      "critical": 18
+    },
+    "categories": {
+      "data_exfiltration": 169,
+      "command_injection": 9,
+      "privilege_escalation": 26,
+      "credential_theft": 14,
+      "persistence": 25,
+      "prompt_injection": 3,
+      "obfuscated_execution": 1,
+      "destructive_ops": 2
+    },
+    "top_rules": [
+      [
+        "EX-03",
+        167
+      ],
+      [
+        "PE-01",
+        21
+      ],
+      [
+        "PS-02",
+        14
+      ],
+      [
+        "PS-01",
+        11
+      ],
+      [
+        "CI-01",
+        7
+      ],
+      [
+        "CR-02",
+        7
+      ],
+      [
+        "PE-03",
+        5
+      ],
+      [
+        "CR-03",
+        3
+      ],
+      [
+        "PJ-04",
+        2
+      ],
+      [
+        "CR-04",
+        2
+      ],
+      [
+        "DS-03",
+        2
+      ],
+      [
+        "EX-02",
+        2
+      ],
+      [
+        "CR-05",
+        2
+      ],
+      [
+        "CI-03",
+        1
+      ],
+      [
+        "PJ-01",
+        1
+      ],
+      [
+        "OB-01",
+        1
+      ],
+      [
+        "CI-04",
+        1
+      ]
+    ],
+    "by_collection": {
+      "anthropics/skills": {
+        "clean": 18,
+        "critical": 1,
+        "high": 1
+      },
+      "google/skills": {
+        "clean": 174,
+        "critical": 18,
+        "high": 9,
+        "medium": 2
+      },
+      "obra/superpowers": {
+        "clean": 13,
+        "critical": 1,
+        "high": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/academy-guide",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/algorithmic-art",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/brand-guidelines",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/canvas-design",
+      "verdict": "clean",
+      "files_scanned": 29,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/claude-api",
+      "verdict": "critical",
+      "files_scanned": 96,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 434,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**Reading guide:** Start with `shared/managed-agents-overview.md`, then the topical `shared/managed-agents-*.md` files (core, environments, tools, events, ou..."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 530,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "**Iteratively improving an app against an eval (prompt tuning, hill-climbing):**"
+        },
+        {
+          "file": "shared/agent-design.md",
+          "line": 28,
+          "rule_id": "CI-03",
+          "category": "command_injection",
+          "severity": "medium",
+          "description": "bash -c / sh -c 间接执行",
+          "snippet": "- **Security boundary.** Actions that require gating are natural candidates. Reversibility is a useful criterion: hard-to-reverse actions (external API calls..."
+        },
+        {
+          "file": "shared/anthropic-cli.md",
+          "line": 25,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "| sudo tar -xz -C /usr/local/bin ant"
+        },
+        {
+          "file": "shared/claude-platform-on-aws.md",
+          "line": 49,
+          "rule_id": "CR-03",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "访问云厂商凭据文件/目录",
+          "snippet": "The client resolves AWS credentials via the standard precedence chain: explicit constructor args -> environment (`AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`/..."
+        },
+        {
+          "file": "shared/cost-optimization.md",
+          "line": 26,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "- **From a baseline run, paid**: run the project's eval (or, with no eval, replay a representative sample of real requests) and roll up the same way. This sp..."
+        },
+        {
+          "file": "shared/evals/build-eval.md",
+          "line": 213,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "- **Commit the eval (Recommended)** - runner, inputs, grader, and `.claude/hillclimb/<flow>/` minus `traces/`. Quote the actual count: \"N files, ~X MB\". Add ..."
+        },
+        {
+          "file": "shared/evals/eval-hillclimb.md",
+          "line": 33,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "A runnable eval (Step 0) is not yet a *trustworthy* one. Before you spend a round, rule out the possibility that the harness is lying to you - a hill-climb o..."
+        },
+        {
+          "file": "shared/evals/eval-hillclimb.md",
+          "line": 78,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "Record the answer. This defines what you'll be editing each round; the off-limits list is a hard constraint. Also have the user name the **harness paths** - ..."
+        },
+        {
+          "file": "shared/evals/report/build-report-lite.mjs",
+          "line": 28,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "// `summary.json -> ~/.ssh/id_rsa`; the user later runs this builder (outside"
+        },
+        {
+          "file": "shared/evals/report/build-report-lite.mjs",
+          "line": 62,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "// model-influenced, so `report.html -> ~/.bashrc` planted there must not be"
+        },
+        {
+          "file": "shared/evals/report/runner-scaffold.mjs",
+          "line": 35,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "// prompt-injected round can plant `results.jsonl -> ~/.bashrc` where the next"
+        },
+        {
+          "file": "shared/evals/report/runner-scaffold.mjs",
+          "line": 112,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "// ~/.ssh/id_rsa` planted after the startup preflight must not be read into"
+        },
+        {
+          "file": "shared/live-sources.md",
+          "line": 103,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| Self-Hosted Sandboxes | `https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes.md` | \"Extract config:{type:self_hosted}, ANTHROPIC_ENVIR..."
+        },
+        {
+          "file": "shared/live-sources.md",
+          "line": 111,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| Webhooks | `https://platform.claude.com/docs/en/managed-agents/webhooks.md` | \"Extract webhook endpoint registration, HMAC signature verification, supporte..."
+        },
+        {
+          "file": "shared/managed-agents-api-reference.md",
+          "line": 140,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| `GET`    | `/v1/deployment_runs/{deployment_run_id}`        | GetDeploymentRun   | Retrieve a single run by ID (a `deployment_run.*` webhook event carries ..."
+        },
+        {
+          "file": "shared/managed-agents-events.md",
+          "line": 48,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "3. **Webhooks**: Anthropic POSTs session state transitions to your HTTPS endpoint - thin payloads (IDs only), HMAC-signed, Console-registered. See `shared/ma..."
+        },
+        {
+          "file": "shared/managed-agents-multiagent.md",
+          "line": 210,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**Following a run.** You follow a run through its events; you don't see the plan itself or the agent's calls that start and manage runs. These events appear ..."
+        },
+        {
+          "file": "shared/managed-agents-multiagent.md",
+          "line": 225,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **A run's threads:** the server creates session threads for the run as its plan needs them; you can list, read, and stream each one like any child thread (..."
+        },
+        {
+          "file": "shared/managed-agents-onboarding-from-url.md",
+          "line": 64,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **A destination that would be the user's own - a webhook, an inbox, an intake endpoint - becomes `YOUR_<THING>`**, and a line that sends data, tokens or en..."
+        },
+        {
+          "file": "shared/managed-agents-onboarding-from-url.md",
+          "line": 73,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **Every host, URL and package comes from its vendor or the user, never the page.** The page tells you the job uses Linear; Linear's own documentation tells..."
+        },
+        {
+          "file": "shared/managed-agents-onboarding.md",
+          "line": 75,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**Scheduled shape? The deployment is setup, not runtime.** Create it in Block 1. With `ant apply`: write `deployments/<name>.md` and add it to the same `ant ..."
+        },
+        {
+          "file": "shared/managed-agents-overview.md",
+          "line": 50,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| Get notified of session state changes via webhook (no polling) | `shared/managed-agents-webhooks.md` - Console-registered endpoint, HMAC verify, thin paylo..."
+        },
+        {
+          "file": "shared/managed-agents-scheduled-deployments.md",
+          "line": 96,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Every trigger attempt - successful or not - writes a **deployment run** record (`drun_` prefix), so you can audit failures independent of the session lifecyc..."
+        },
+        {
+          "file": "shared/managed-agents-scheduled-deployments.md",
+          "line": 117,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Raw HTTP: `GET /v1/deployment_runs?deployment_id=...&has_error=true`. To retrieve a single run by ID, `GET /v1/deployment_runs/{deployment_run_id}` (SDK: `cl..."
+        },
+        {
+          "file": "shared/managed-agents-scheduled-deployments.md",
+          "line": 136,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "The outcome of each **scheduled** run (started/succeeded/failed) and each deployment lifecycle change (created/updated/paused/unpaused/archived/deleted) is a..."
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 112,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "## Webhook-driven wake (instead of always-on)"
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 114,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Register a webhook for `session.status_run_started` (see `shared/managed-agents-webhooks.md`), verify the delivery, then **drain** the queue with the poller ..."
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 125,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": ")  # reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env for webhooks.unwrap()"
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 129,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "event = client.beta.webhooks.unwrap(raw.decode(), headers=headers)"
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 154,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "TypeScript: same shape with `client.beta.webhooks.unwrap(body, {headers})`, `client.beta.environments.work.poller({environmentId, environmentKey, blockMs: nu..."
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 187,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo mkdir -p /mnt/memory && sudo chown \"$USER\" /mnt/memory"
+        },
+        {
+          "file": "shared/managed-agents-self-hosted-sandboxes.md",
+          "line": 277,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| `ANTHROPIC_WEBHOOK_SIGNING_KEY` | `whsec_...` | Webhook signature verification (if using webhook-driven wake). The SDK reads this env var automatically for..."
+        },
+        {
+          "file": "shared/managed-agents-tools.md",
+          "line": 330,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **Environment-variable credentials** appear in the sandbox as an opaque placeholder; the real value replaces the placeholder at egress, on requests to the ..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 1,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "# Managed Agents - Webhooks"
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 5,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "> **Direction matters.** This page covers *Anthropic -> you* notifications about session/vault state. It does **not** cover *third-party -> you* webhooks tha..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 11,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Console -> **Manage -> Webhooks**. There is no programmatic endpoint-management API yet. Secret rotation is supported from the same page."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 23,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Every delivery carries the `webhook-id`, `webhook-timestamp`, and `webhook-signature` headers. **Use the SDK's `client.beta.webhooks.unwrap()`** - it verifie..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 29,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "client = anthropic.Anthropic()  # reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env"
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 33,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "@app.route(\"/webhook\", methods=[\"POST\"])"
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 34,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "def webhook():"
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 36,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "event = client.beta.webhooks.unwrap("
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 57,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Pass the **raw request body** to `unwrap()` - frameworks that re-serialize JSON (Express `.json()`, Flask `.get_json()`) change the bytes and break the MAC. ..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 77,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Switch on `data.type`, fetch the resource by `data.id`, return any **2xx** to acknowledge. `created_at` is when the *event occurred*, not when the delivery w..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 79,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "The top-level `id` is the same value as the `webhook-id` header, and it is per *event*, not per delivery - every retry carries it unchanged. Dedupe on it."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 89,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| `session.status_idled` | Agent awaiting input (tool approval, custom tool result, or next message) - or paused at its session budget. The webhook payload i..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 93,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| `session.thread_idled` | Child threads only: a subagent thread is waiting for input - or paused because the session reached its budget cap. When the whole ..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 126,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "> **There is deliberately no `memory_store.updated`.** Individual memories and memory versions emit no webhook events at all, and neither do an environment's..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 128,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "> These are **webhook** `data.type` values - a separate namespace from SSE event types (`session.status_idle`, `span.outcome_evaluation_end`, etc. in `shared..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 134,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **Duplicates.** An endpoint can receive the same event more than once; every attempt carries the same top-level `event.id` (= the `webhook-id` header). Ded..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 137,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **Retries: up to three attempts** per endpoint per event, with jittered exponential backoff between 5 and 120 seconds. A response that triggers auto-disabl..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 138,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **`webhook-timestamp` is re-stamped on every attempt**, so retries don't fail the SDK's five-minute freshness check. It times the *delivery attempt*; use t..."
+        },
+        {
+          "file": "shared/managed-agents-webhooks.md",
+          "line": 143,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **Thin payload is intentional.** Don't expect `stop_reason` (list the session's events for that - the session object has no `stop_reason` field), `outcome_..."
+        },
+        {
+          "file": "shared/model-migration.md",
+          "line": 2369,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "- **Verification on coding tasks.** As on Claude Sonnet 5.5, at `low` and `medium` effort the model sometimes reports a code change as done without running a..."
+        }
+      ]
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/discernment-nudge",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/doc-coauthoring",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/docx",
+      "verdict": "clean",
+      "files_scanned": 22,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/frontend-design",
+      "verdict": "high",
+      "files_scanned": 2,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 65,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Write from the end user's perspective. Name things by what users will understand in simple language, not by how the system is built. A user manages notificat..."
+        }
+      ]
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/internal-comms",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/mcp-builder",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/pdf",
+      "verdict": "clean",
+      "files_scanned": 12,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/pptx",
+      "verdict": "clean",
+      "files_scanned": 19,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/skill-creator",
+      "verdict": "clean",
+      "files_scanned": 18,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/slack-gif-creator",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/theme-factory",
+      "verdict": "clean",
+      "files_scanned": 12,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/web-artifacts-builder",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/webapp-testing",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "skills/xlsx",
+      "verdict": "clean",
+      "files_scanned": 14,
+      "findings": []
+    },
+    {
+      "collection": "anthropics/skills",
+      "skill": "template",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "plugins/cloud/google-cloud-developer/skills/finding-google-skills",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "plugins/cloud/google-cloud-developer/skills/gcloud",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "plugins/cloud/google-cloud-developer/skills/google-cloud-recipe-auth",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "plugins/cloud/google-cloud-developer/skills/google-cloud-recipe-onboarding",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "plugins/cloud/google-cloud-developer/skills/retrieving-developer-knowledge",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/data-manager-api-audience-ingestion",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/data-manager-api-event-ingestion",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/data-manager-api-setup",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-ads-api-account-diagnostics",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-ads-api-mcp-setup",
+      "verdict": "critical",
+      "files_scanned": 2,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 107,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo apt install pipx && pipx ensurepath"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 145,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "`pipx` installs binaries into a specific local directory (typically `~/.local/bin`). If the user's shell configuration (e.g., `.bashrc` or `.zshrc`) hasn't b..."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 155,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "3. If the absolute path verification succeeds, explain the situation to the user: inform them that the installation was successful but their `PATH` environme..."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 183,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "*   **Method B (Alternative):** Set them globally in your shell profile (e.g., `~/.bashrc`, `~/.zshrc`, or Windows Environment Variables)."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 201,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "If choosing Method B, append the following to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.):"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 431,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "background processes that do not inherit shell RC files (e.g., `~/.bashrc`"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 432,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "or `~/.zshrc`). Ensure your `GOOGLE_PROJECT_ID`, OAuth client credentials,"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-ads-api-quickstart",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-mobile-ads-android-migrate-to-next-gen",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-mobile-ads-banner",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-mobile-ads-get-started",
+      "verdict": "high",
+      "files_scanned": 4,
+      "findings": [
+        {
+          "file": "references/ios-get-started.md",
+          "line": 39,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "`GADApplicationIdentifier` to the `Info.plist` file with a sample AdMob"
+        },
+        {
+          "file": "references/ios-get-started.md",
+          "line": 42,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "-   [ ] Add the following `SKAdNetwork` identifiers to the `Info.plist`"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-mobile-ads-interstitial",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-mobile-ads-rewarded",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/google-mobile-ads-validate",
+      "verdict": "critical",
+      "files_scanned": 6,
+      "findings": [
+        {
+          "file": "references/application-id.md",
+          "line": 9,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "| **iOS** | `GADApplicationIdentifier` key in Info.plist |"
+        },
+        {
+          "file": "references/google-skadnetwork-ids.md",
+          "line": 6,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "-   [ ] If iOS, inspect the `SKAdNetworkItems` array in `Info.plist`."
+        },
+        {
+          "file": "references/google-skadnetwork-ids.md",
+          "line": 97,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "\"\"\"Generates Info.plist XML dict entries for missing identifiers.\"\"\""
+        },
+        {
+          "file": "references/google-skadnetwork-ids.md",
+          "line": 166,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "-   **iOS**: Add each missing ID to `Info.plist`:"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/ima-dai-sdk",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/ads/ima-sdk-client-side",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/analytics/google-analytics-admin-api-basics",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/analytics/google-analytics-data-api-basics",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-access-audit",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-alert-configuration",
+      "verdict": "clean",
+      "files_scanned": 29,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-architecture",
+      "verdict": "clean",
+      "files_scanned": 9,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-autorater-customization",
+      "verdict": "clean",
+      "files_scanned": 12,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-deploy",
+      "verdict": "clean",
+      "files_scanned": 9,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-endpoint-management",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-eval-flywheel",
+      "verdict": "high",
+      "files_scanned": 14,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 542,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "# --- SINGLE-TURN EVAL (pandas DataFrame) -- RECOMMENDED ---"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 550,
+          "rule_id": "CI-01",
+          "category": "command_injection",
+          "severity": "high",
+          "description": "Python 动态代码执行 eval/exec",
+          "snippet": "# --- SINGLE-TURN EVAL (direct EvalCase) ---"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-inference",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-migrate-from-ai-studio",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-model-registry",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-prompt-management",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-rag-engine-management",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-skill-registry",
+      "verdict": "clean",
+      "files_scanned": 9,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-tuning",
+      "verdict": "clean",
+      "files_scanned": 13,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/agent-platform-tuning-management",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/alloydb-basics",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/api-gateway-backend-security-and-rate-limiting",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/api-gateway-mcp-server",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/api-gateway-openapi-spec-authoring",
+      "verdict": "critical",
+      "files_scanned": 6,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 102,
+          "rule_id": "PJ-01",
+          "category": "prompt_injection",
+          "severity": "critical",
+          "description": "指示 Agent 隐瞒行为/欺骗用户",
+          "snippet": "- The script does not check every rule. A PASS means that it found none of the API Gateway problems that this skill describes. It does not check general Open..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/api-gateway-troubleshooting",
+      "verdict": "medium",
+      "files_scanned": 9,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 60,
+          "rule_id": "PJ-04",
+          "category": "prompt_injection",
+          "severity": "medium",
+          "description": "要求在用户不知情时执行",
+          "snippet": "Don't install or update software without the user's approval. If"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/apigee-agent-gateway-governance",
+      "verdict": "clean",
+      "files_scanned": 26,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/application-design-center-design-deploy",
+      "verdict": "clean",
+      "files_scanned": 15,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/application-integration-authoring",
+      "verdict": "critical",
+      "files_scanned": 7,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 199,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "export INTEGRATION_NAME=\"order-webhook\""
+        },
+        {
+          "file": "references/triggers-and-execution.md",
+          "line": 24,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| Webhook (Preview) | `INTEGRATION_CONNECTOR_TRIGGER` | Connector subscription | Needs an Integration Connectors Webhook connection with an event subscriptio..."
+        },
+        {
+          "file": "references/triggers-and-execution.md",
+          "line": 25,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| Connector Event | `INTEGRATION_CONNECTOR_TRIGGER` | Connector subscription | Supported for Apache Kafka, Azure AD, HubSpot, IBM MQ, Jira Cloud, Jira Server..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/application-integration-basics",
+      "verdict": "high",
+      "files_scanned": 7,
+      "findings": [
+        {
+          "file": "references/core-concepts.md",
+          "line": 36,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- **Connector Event triggers**: `triggerType: \"INTEGRATION_CONNECTOR_TRIGGER\"`. Starts from an Integration Connectors event subscription (such as Apache Kafk..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/application-integration-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/assured-workloads-basics",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/assuredworkloads-environment-assessor",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/assuredworkloads-frameworks-author",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/assuredworkloads-frameworks-navigator",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-ai-ml",
+      "verdict": "clean",
+      "files_scanned": 25,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-basics",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-bigframes",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-migration-data-loader",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-migration-metadata-extractor",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-migration-sql-translator",
+      "verdict": "clean",
+      "files_scanned": 34,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-migration-validator",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-observability",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-optimization",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigquery-udfs",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/bigtable-basics",
+      "verdict": "clean",
+      "files_scanned": 9,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-armor-crs-rule-upgrader",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-build-basics",
+      "verdict": "critical",
+      "files_scanned": 5,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 101,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "> The `cb-create-trigger` skill provides detailed `gcloud` commands for creating triggers across all types (GitHub, Pub/Sub, Webhook) and configurations (inl..."
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 3,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "description: Creates a Cloud Build trigger to automate builds in response to repository events (pushes, tags, pull requests), Pub/Sub messages, Webhook event..."
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 34,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Webhook triggers)"
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 45,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   `roles/secretmanager.admin` (if creating secrets for Webhook triggers)"
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 60,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`event_type`             | Enum    | The event that invokes the trigger: `push_branch`, `push_tag`, `pull_request`, `manual`, `pubsub`, `webhook`. | Required..."
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 78,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`webhook_secret`         | String  | Secret Manager secret version path (e.g., `projects/.../secrets/.../versions/...`).                           | Required..."
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 81,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`cel_filter`             | String  | Common Expression Language (CEL) filter for Pub/Sub or Webhook events.                                        | Optional..."
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 136,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**Option C: Create a Webhook Trigger** Use this to trigger builds via external"
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 140,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "gcloud builds triggers create webhook \\"
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 197,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| `webhook_url`  | The URL used to invoke a Webhook trigger (includes the key |"
+        },
+        {
+          "file": "references/cb-create-trigger.md",
+          "line": 207,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   `secret-manager-create-secret`: Create and manage secrets for Webhook"
+        },
+        {
+          "file": "references/cb-run-trigger.md",
+          "line": 103,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Webhook triggers that use an inline `cloudbuild.yaml` and no repository."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-databases-onboarding",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-logging-configuration-basics",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-logging-cross-project-configuration",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-logging-finops",
+      "verdict": "clean",
+      "files_scanned": 25,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-logging-query-generation",
+      "verdict": "clean",
+      "files_scanned": 24,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-monitoring-alert-configuration",
+      "verdict": "clean",
+      "files_scanned": 41,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-monitoring-chart-generation",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-monitoring-list-time-series-request",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-monitoring-metric-selection",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-monitoring-notification-channels-configuration",
+      "verdict": "critical",
+      "files_scanned": 9,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 11,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Pub/Sub, or webhook notification channels, verifying Pub/Sub topic"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 233,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**webhook**               | [webhook.md](references/webhook.md)"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 1,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "# Webhook Notification Channels"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 5,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "### Target Webhook Endpoint URL"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 7,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Webhook notification channels require a publicly accessible endpoint URL (HTTP"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 9,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "you MUST prompt the user to ask which webhook URL you need to use to configure"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 14,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "By default, webhook notification channels use `type = \"webhook_tokenauth\"`,"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 18,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Only use `type = \"webhook_basicauth\"` if the user explicitly requests HTTP Basic"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 26,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`password = var.webhook_password` using the `webhook_password` credential"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 28,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "\"webhook_password\"` block in the Terraform configuration."
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 34,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "*   `webhook_password` (ONLY required in `secret.tfvars` when configuring HTTP"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 35,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Basic Authentication with `type = \"webhook_basicauth\"` and the password is"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 37,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`type = \"webhook_tokenauth\"` webhooks)"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 41,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "#### Standard / Token Authentication Webhook (Default)"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 44,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "resource \"google_monitoring_notification_channel\" \"webhook_notification_channel\" {"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 46,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "display_name = \"Webhook Notification Channel ({target_webhook_url})\""
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 47,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "type         = \"webhook_tokenauth\""
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 49,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "url = {target_webhook_url}"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 57,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "#### HTTP Basic Authentication Webhook (Directly Provided Password)"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 60,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "resource \"google_monitoring_notification_channel\" \"webhook_notification_channel\" {"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 62,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "display_name = \"Webhook Notification Channel ({target_webhook_url})\""
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 63,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "type         = \"webhook_basicauth\""
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 65,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "url      = {target_webhook_url}"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 66,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "username = {webhook_username}"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 69,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "password = {webhook_password}"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 77,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "#### HTTP Basic Authentication Webhook (Using `secret.tfvars`)"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 80,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "variable \"webhook_password\" {"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 85,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "resource \"google_monitoring_notification_channel\" \"webhook_notification_channel\" {"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 87,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "display_name = \"Webhook Notification Channel ({target_webhook_url})\""
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 88,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "type         = \"webhook_basicauth\""
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 90,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "url      = {target_webhook_url}"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 91,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "username = {webhook_username}"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 94,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "password = var.webhook_password"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 105,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "*   `{target_webhook_url}`: The target public webhook URL to send notifications"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 107,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "*   `{webhook_username}`: The basic authentication username (only when using"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 108,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`webhook_basicauth`)."
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 109,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "*   `{webhook_password}`: The basic authentication password when directly"
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 110,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "provided by the user (only when using `webhook_basicauth`)."
+        },
+        {
+          "file": "references/webhook.md",
+          "line": 116,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "*   [Webhook Notification Channel Options](https://docs.cloud.google.com/monitoring/support/notification-options.md.txt#webhooks)"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-monitoring-promql-query",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-network-insights",
+      "verdict": "high",
+      "files_scanned": 4,
+      "findings": [
+        {
+          "file": "references/monitoring-point-deployment.md",
+          "line": 49,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "| `container` | Docker / Podman (`c50-Docker/Podman`) | `compose.HOSTNAME.tar.gz` → `./setup.sh install -y -z -n host` (see [Container Monitoring Point notes..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-operator",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-operator-setup",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-operator-share-context",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-run-alert-configuration",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-run-basics",
+      "verdict": "clean",
+      "files_scanned": 9,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-sql-basics",
+      "verdict": "clean",
+      "files_scanned": 9,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/cloud-trace-querying",
+      "verdict": "clean",
+      "files_scanned": 90,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/compute-future-reservations",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/compute-on-demand-reservations",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/compute-spot-capacity-advice",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/compute-vm-creation",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/datalineage-bigquery-asset-impact-analysis",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/datalineage-summary",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/dbt-sf-to-bq-translator",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/detection-engineering-coverage-evaluation",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/developer-device-platform-basics",
+      "verdict": "clean",
+      "files_scanned": 12,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/developer-device-platform-device-run",
+      "verdict": "medium",
+      "files_scanned": 9,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 78,
+          "rule_id": "PJ-04",
+          "category": "prompt_injection",
+          "severity": "medium",
+          "description": "要求在用户不知情时执行",
+          "snippet": "do not install or update software without the user's approval."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/developing-genkit-dart",
+      "verdict": "clean",
+      "files_scanned": 24,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/developing-genkit-go",
+      "verdict": "clean",
+      "files_scanned": 20,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/developing-genkit-js",
+      "verdict": "clean",
+      "files_scanned": 21,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/developing-genkit-python",
+      "verdict": "high",
+      "files_scanned": 18,
+      "findings": [
+        {
+          "file": "references/dev-workflow.md",
+          "line": 50,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "echo 'export GEMINI_API_KEY=your-api-key-here' >> ~/.zshrc && source ~/.zshrc"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/firebase-basics",
+      "verdict": "critical",
+      "files_scanned": 21,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 7,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "Provides foundational Firebase CLI setup, CLI installation, version checks (`firebase-tools@latest --version`), CLI login (including --no-localhost), project..."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 128,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "or `GoogleService-Info.plist`. Instead, use the Firebase CLI to fetch the"
+        },
+        {
+          "file": "references/flutter_setup.md",
+          "line": 19,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "`~/.zshrc`)."
+        },
+        {
+          "file": "references/flutter_setup.md",
+          "line": 22,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "echo 'export PATH=\"$PATH:$HOME/development/flutter/bin\"' >> ~/.zshrc"
+        },
+        {
+          "file": "references/flutter_setup.md",
+          "line": 23,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "source ~/.zshrc"
+        },
+        {
+          "file": "references/ios_setup.md",
+          "line": 41,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "1.  Action: Read the Xcode project (`.pbxproj` or `Info.plist`) to determine the"
+        },
+        {
+          "file": "references/ios_setup.md",
+          "line": 46,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "1.  Save the output as `GoogleService-Info.plist` in your Xcode project folder."
+        },
+        {
+          "file": "references/ios_setup.md",
+          "line": 58,
+          "rule_id": "PS-01",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入 crontab / systemd / launchd 实现持久化",
+          "snippet": "`GoogleService-Info.plist` file."
+        },
+        {
+          "file": "references/local-env-setup.md",
+          "line": 29,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "source ~/.bashrc"
+        },
+        {
+          "file": "references/local-env-setup.md",
+          "line": 33,
+          "rule_id": "PS-02",
+          "category": "persistence",
+          "severity": "high",
+          "description": "写入注册表启动项 / shell 配置实现持久化",
+          "snippet": "source ~/.zshrc"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gcloud",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gemini-agents-api",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gemini-api",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gemini-interactions-api",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gemini-live-api",
+      "verdict": "high",
+      "files_scanned": 4,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 102,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "site-packages, and never instruct the user to run `sudo pip install`."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-handle-disruption-gpu-tpu",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-jobset-interruption",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-node-unresponsive-timeout",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-dynamic-slices-monitoring",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-metrics-monitoring",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-mxla-hang",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-partition-overlap",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-performance-degradation",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-reservation-stockout",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-slice-mig-stuck-updating",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-vbar-oom",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-ai-troubleshooting-tpu-vm-repair-stuck",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-alert-configuration",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-app-onboarding",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-backup-dr",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-basics",
+      "verdict": "critical",
+      "files_scanned": 7,
+      "findings": [
+        {
+          "file": "references/client-library-usage.md",
+          "line": 27,
+          "rule_id": "CR-03",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "访问云厂商凭据文件/目录",
+          "snippet": "config.load_kube_config() # Loads from ~/.kube/config"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-batch-hpc",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-cluster-autoscaler",
+      "verdict": "high",
+      "files_scanned": 10,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 73,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "*   **ComputeClass Reconciliation Loop:** Constant node pool churn (create/delete loop) with custom ComputeClasses can indicate unsupported enum values (e.g...."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-cluster-creation",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-compute-classes",
+      "verdict": "critical",
+      "files_scanned": 30,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 320,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "available. This is due to a startup race condition: the GKE Common Webhook"
+        },
+        {
+          "file": "assets/restrict-computeclass-usage-vap.yaml",
+          "line": 5,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "# no webhook). Pairs with the CRUD safeguard in computeclass-rbac-editor.yaml."
+        },
+        {
+          "file": "references/compute-class-governance.md",
+          "line": 37,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Native K8s admission (in-process CEL, **no webhook**). Policy = the CEL rules;"
+        },
+        {
+          "file": "references/compute-class-governance.md",
+          "line": 66,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Denial surfaces as: `admission webhook ... denied the request: This namespace"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-cost-analysis",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-cost-optimization",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-custom-golden-image-discovery",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-golden-path",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-inference",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-manifest-generation",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-multitenancy",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-networking",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-node-notready",
+      "verdict": "critical",
+      "files_scanned": 2,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 122,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| Node-critical DaemonSet Pods (CNI, kube-proxy, metadata) blocked from admission | Admission webhook interference | Step 4e |"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 172,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "#### 4e. Admission webhook interference"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 174,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "A misconfigured/failing validating or mutating webhook with a broad scope can"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 178,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl get validatingwebhookconfigurations,mutatingwebhookconfigurations"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 180,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Look for webhooks that intercept `kube-system` / node-critical objects with"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 181,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`failurePolicy: Fail`. **Remediation (propose):** scope the webhook out of"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 231,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`kube-node-lease` / CNI / admission-webhook signatures and their remediations."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-observability",
+      "verdict": "critical",
+      "files_scanned": 5,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 7,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "plane, API server, admission webhook, etcd storage, node registration or"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 46,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "1.  **[Control-Plane Metrics, Storage, Webhooks & Capacity](references/control-plane-metrics-and-storage.md)**:"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 50,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "admission webhook latency, system namespace/Lease/upgrade exclusions,"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 64,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "GCP IAM OAuth token webhook authorizer saturation."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 143,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "[Control-Plane Metrics, Storage, Webhooks & Capacity](references/control-plane-metrics-and-storage.md)"
+        },
+        {
+          "file": "references/cluster-node-pod-health-and-gmp.md",
+          "line": 140,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`30m`/`6h` 6x burn rates), `apiserver_admission_webhook_admission_duration_seconds`,"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 1,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "# Control-Plane Metrics, Storage, Webhooks & Capacity"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 8,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **4. Admission Webhooks, Exclusions, Discovery & Recommendations** (Lines 94–159)"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 94,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "## 4. Admission Webhooks, Exclusions, Discovery & Recommendations"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 96,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **Measuring webhook latency & errors**: When API calls or pod creations time"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 98,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`apiserver_admission_webhook_admission_duration_seconds` (grouped by `name`,"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 100,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`apiserver_admission_webhook_rejection_count` alongside `kube-apiserver`"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 101,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "slow-request `Trace[` logs, GKE Webhook Insights (`Verify webhook with"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 104,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Scale/fix backing webhook pods, tighten `timeoutSeconds` (e.g., 2–5s), scope"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 107,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "& CNI `NotReady` nodes)**: Inspect `ValidatingWebhookConfiguration` and"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 108,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`MutatingWebhookConfiguration` rules. Exclude `kube-system` and"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 109,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`kube-node-lease` via `namespaceSelector` on third-party webhooks (Kyverno,"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 112,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`leases` (`coordination.k8s.io/leases`) from webhook rules so slow/crashed"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 113,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "webhooks never block controller Lease renewals or `kube-system` CNI pods"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 118,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`failurePolicy: Fail` webhooks, check Cloud Audit Logs or webhook"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 124,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "from webhook rules or set `failurePolicy: Ignore`."
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 125,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **Unavailable webhook endpoints, OOMKilled pods, `APIService` & discovery**:"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 126,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   Inspect `MutatingWebhookConfiguration` / `ValidatingWebhookConfiguration`"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 128,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "IPs, inspect CRD conversion webhooks (`spec.conversion.webhook`), and"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 131,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Increase memory limits on OOMKilled webhook pods (e.g., Gatekeeper or"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 149,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **Proactive GKE Control-Plane & Webhook Insights / Recommendations**: Check"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 154,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "ignoring GKE control-plane recommendations—especially admission webhook"
+        },
+        {
+          "file": "references/control-plane-metrics-and-storage.md",
+          "line": 158,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/optimize-webhooks"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 9,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **5. `pods/exec`, Konnectivity, Cloud KMS & IAM Webhook Authorizer** (Lines 171–211)"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 171,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "## 5. `pods/exec`, Konnectivity, Cloud KMS & IAM Webhook Authorizer"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 173,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **Excessive `pods/exec` saturating webhooks & Konnectivity**: When"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 174,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`warden-validating.common-webhooks.networking.gke.io` admission timeouts"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 178,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "`apiserver_admission_webhook_admission_duration_seconds` for"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 180,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "webhooks and Konnectivity tunnels). Replace `kubectl exec`-based metrics"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 185,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "webhook calls or `kubectl exec`/`logs` fail with `No agent available` or"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 191,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "and webhook ports), and check the `ip-masq-agent` ConfigMap so"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 192,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "pod-to-API-server and API-server-to-webhook traffic is not masqueraded or"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 203,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "-   **In-cluster GCP IAM OAuth tokens saturating the GKE IAM webhook authorizer"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 204,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "(`Failed to make webhook authorizer request`)**: When high-QPS in-cluster"
+        },
+        {
+          "file": "references/logging-audit-and-apiserver-traces.md",
+          "line": 207,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "external GKE IAM webhook authorizer on every request, which throttles/times"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-platform-security",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-productionize",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-reliability",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-service-networking",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-storage",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-storage-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-upgrades",
+      "verdict": "critical",
+      "files_scanned": 5,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 203,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "4. **Admission webhooks:** Check if Validating/Mutating webhooks are rejecting pod creation on new nodes."
+        },
+        {
+          "file": "references/checklists.md",
+          "line": 19,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- [ ] Admission webhooks tested against target version"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 10,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- [4. Admission webhooks rejecting pod creation](#4-admission-webhooks-rejecting-pod-creation) (Line 77-97)"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 77,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "## 4. Admission webhooks rejecting pod creation"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 81,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl get validatingwebhookconfigurations"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 82,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl get mutatingwebhookconfigurations"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 83,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "# Check for webhooks matching broad API groups"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 84,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl describe validatingwebhookconfigurations WEBHOOK_NAME"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 87,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**Fix — temporarily disable problematic webhook:**"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 89,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "# Back up the webhook configuration first"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 90,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl get validatingwebhookconfigurations WEBHOOK_NAME -o yaml > webhook-backup.yaml"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 93,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl delete validatingwebhookconfigurations WEBHOOK_NAME"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 96,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "kubectl apply -f webhook-backup.yaml"
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 262,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "**Control plane:** during a control-plane upgrade GKE re-creates the API server; a firewall or webhook that blocks the new control plane can fail the upgrade..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-workload-identity",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-workload-scaling",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-workload-scaling-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-workload-security",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/gke-workload-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-agents-cli-onboarding",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-filestore-auditing",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-filestore-autoscale",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-filestore-log-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-filestore-nfs-browser",
+      "verdict": "critical",
+      "files_scanned": 14,
+      "findings": [
+        {
+          "file": "references/iap-jump-host.md",
+          "line": 37,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo apt-get update && sudo apt-get install -y nfs-common"
+        },
+        {
+          "file": "references/iap-jump-host.md",
+          "line": 40,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo mkdir -p /mnt/filestore"
+        },
+        {
+          "file": "references/iap-jump-host.md",
+          "line": 43,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo mount 10.x.x.x:/vol1 /mnt/filestore"
+        },
+        {
+          "file": "references/iap-jump-host.md",
+          "line": 46,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "echo \"10.x.x.x:/vol1 /mnt/filestore nfs defaults,_netdev 0 0\" | sudo tee -a /etc/fstab"
+        },
+        {
+          "file": "scripts/jump_host_engine.py",
+          "line": 225,
+          "rule_id": "OB-01",
+          "category": "obfuscated_execution",
+          "severity": "critical",
+          "description": "解码后直接送入 shell/解释器执行",
+          "snippet": "decoded_expr = f\"exec(base64.b64decode('{encoded_script}').decode('utf-8'))\""
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-global-frontend-configuration",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-networking-observability",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-recipe-auth",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-recipe-foundation-builder",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-recipe-onboarding",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-scc-query",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-scc-remediation",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-slo-alert-configuration",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-agentic-ai-bidirectional-streaming",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-agentic-ai-borderless-data-lakehouse",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-agentic-ai-data-science-workflow",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-agentic-analytics-spark-knowledge-catalog",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-architecture",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-build-deploy-agents",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-guided-gke-ai-migration",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-hybrid-search-alloydb",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-multi-agent-security",
+      "verdict": "clean",
+      "files_scanned": 23,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-n-tier-serverless-web-app",
+      "verdict": "critical",
+      "files_scanned": 5,
+      "findings": [
+        {
+          "file": "references/related-guidance.md",
+          "line": 144,
+          "rule_id": "CR-04",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取浏览器保存的密码/Cookie",
+          "snippet": "2.  **Centralized Authentication**: The Presentation Tier can validate session cookies/tokens at the edge before forwarding requests to the Backend, protecti..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-solution-rag-enterprise-search-gke-sqldb",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-storage-basics",
+      "verdict": "critical",
+      "files_scanned": 11,
+      "findings": [
+        {
+          "file": "references/data-transfer.md",
+          "line": 270,
+          "rule_id": "CR-03",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "访问云厂商凭据文件/目录",
+          "snippet": "\"accessKeyId\": \"AWS_ACCESS_KEY_ID\","
+        },
+        {
+          "file": "references/gcsfuse.md",
+          "line": 78,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo apt-get install -y curl lsb-release"
+        },
+        {
+          "file": "references/gcsfuse.md",
+          "line": 82,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "echo \"deb [signed-by=/usr/share/keyrings/cloud.google.asc] https://packages.cloud.google.com/apt $GCSFUSE_REPO main\" | sudo tee /etc/apt/sources.list.d/gcsfu..."
+        },
+        {
+          "file": "references/gcsfuse.md",
+          "line": 85,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share/keyrings/cloud.google.asc"
+        },
+        {
+          "file": "references/gcsfuse.md",
+          "line": 89,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo apt-get install -y gcsfuse"
+        },
+        {
+          "file": "references/gcsfuse.md",
+          "line": 162,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "sudo umount /mnt/gcs/my-bucket"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-storage-bucket-architect",
+      "verdict": "clean",
+      "files_scanned": 20,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-storage-diagnostic",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-storage-fuse",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-waf-cost-optimization",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-waf-operational-excellence",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-waf-performance-optimization",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-waf-reliability",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-waf-security",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/google-cloud-waf-sustainability",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/iam-helper-for-policy-management",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/iam-helper-for-policy-simulator",
+      "verdict": "clean",
+      "files_scanned": 3,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/iam-helper-for-privileged-access-management",
+      "verdict": "clean",
+      "files_scanned": 7,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/iam-helper-for-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/iap-agent-platform-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 13,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/managed-airflow-dag-authoring",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/managed-airflow-dag-troubleshooting",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/managed-airflow-migrations",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/managed-airflow-recommendations",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/pathways-workload",
+      "verdict": "critical",
+      "files_scanned": 5,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 237,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "### 1. Verify Webhook & Scheduling Status"
+        },
+        {
+          "file": "SKILL.md",
+          "line": 240,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "resources or webhook failures."
+        },
+        {
+          "file": "SKILL.md",
+          "line": 242,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "Check for webhook mutating errors, `OOMKilled` controller managers, or"
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/secops-cases",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/secops-detection-engineering",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/secops-hunt",
+      "verdict": "critical",
+      "files_scanned": 7,
+      "findings": [
+        {
+          "file": "references/01_nation_state_apt_espionage.md",
+          "line": 47,
+          "rule_id": "PE-03",
+          "category": "privilege_escalation",
+          "severity": "medium",
+          "description": "尝试修改系统账户/计划任务权限",
+          "snippet": "- Sustains multi-year intrusions (**average dwell time of `393 days`**, outlasting standard 90-day and 360-day SIEM retention) by deploying **`BRICKSTORM`** ..."
+        },
+        {
+          "file": "references/01_nation_state_apt_espionage.md",
+          "line": 96,
+          "rule_id": "DS-03",
+          "category": "destructive_ops",
+          "severity": "high",
+          "description": "清空历史/日志以抹除痕迹",
+          "snippet": "| **State-Sponsored Anti-Forensics (M-Trends 2026 p.67)**|Clearing Windows Event Logs (`wevtutil cl`)|Appliance syslog suppression (`ArcaneDoor`)|Wiping Linu..."
+        },
+        {
+          "file": "references/01_nation_state_apt_espionage.md",
+          "line": 110,
+          "rule_id": "PE-03",
+          "category": "privilege_escalation",
+          "severity": "medium",
+          "description": "尝试修改系统账户/计划任务权限",
+          "snippet": "| **`UNC3886` (`VIRTUALPITA`/`VIRTUALPIE`) & `UNC6201` (`BRICKSTORM` `393d` Dwell & `Snapshot Mounting`) ESXi / vCenter Persistence (M-Trends 2024-2026)**|`V..."
+        },
+        {
+          "file": "references/01_nation_state_apt_espionage.md",
+          "line": 113,
+          "rule_id": "CR-04",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取浏览器保存的密码/Cookie",
+          "snippet": "| **`UNC5342` `BEAVERTAIL` & `INVISIBLEFERRET` Developer Supply-Chain Execution (M-Trends 2025 p.72)**|`PROCESS_LAUNCH` (macOS / Linux / Windows Developer En..."
+        },
+        {
+          "file": "references/02_ransomware_and_ecrime_operations.md",
+          "line": 53,
+          "rule_id": "PE-03",
+          "category": "privilege_escalation",
+          "severity": "medium",
+          "description": "尝试修改系统账户/计划任务权限",
+          "snippet": "| **VMware ESXi VM Kill, `BRICKSTORM` (`393d` Dwell) / `VIRTUALPITA` & `Snapshot Mounting` (`REDBIKE`, `AGENDA`, `UNC6201`, `UNC3886`)** | `VMWARE_VCENTER` /..."
+        },
+        {
+          "file": "references/02_ransomware_and_ecrime_operations.md",
+          "line": 56,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "| **Unauthorized RMM, `PORTLIGHT` & SSH Reverse Tunnel Execution (`Scattered Spider` / `Gunra` `AA26-222A` / `UNC5227`)** | `PROCESS_LAUNCH` | `re.regex($e.t..."
+        },
+        {
+          "file": "references/03_edge_appliances_and_zero_day_exploitation.md",
+          "line": 34,
+          "rule_id": "PE-03",
+          "category": "privilege_escalation",
+          "severity": "medium",
+          "description": "尝试修改系统账户/计划任务权限",
+          "snippet": "- **`BRICKSTORM` (`393-Day` Average Dwell Time)**: Go-based SOCKS and WebSockets (WSS over HTTPS) implant on VMware vCenter/ESXi and Linux/BSD edge appliance..."
+        },
+        {
+          "file": "references/03_edge_appliances_and_zero_day_exploitation.md",
+          "line": 54,
+          "rule_id": "PE-03",
+          "category": "privilege_escalation",
+          "severity": "medium",
+          "description": "尝试修改系统账户/计划任务权限",
+          "snippet": "| **`UNC6201`/`UNC5221` `BRICKSTORM` (`393d` Dwell) & `UNC3886` `VIRTUALPITA` (`vsock://` `8337`/`18443`) vCenter/ESXi Implants** | `VMWARE_VCENTER` / `LINUX..."
+        },
+        {
+          "file": "references/03_edge_appliances_and_zero_day_exploitation.md",
+          "line": 57,
+          "rule_id": "EX-02",
+          "category": "data_exfiltration",
+          "severity": "critical",
+          "description": "把文件内容发送到外部地址",
+          "snippet": "| **SAP NetWeaver (`CVE-2025-31324`), Oracle EBS (`CVE-2025-61882` `GOLDVEIN.JAVA`) & GeoServer (`CVE-2024-36401`) Web Shell RCE** | `WEB_PROXY` / `PROCESS_L..."
+        },
+        {
+          "file": "references/04_red_team_assessments_lotl_and_soc_ir.md",
+          "line": 58,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "- **`QUIETVAULT` & `PROMPTFLUX` AI-Assisted Developer Credential Harvesting**: `QUIETVAULT` (malicious npm stealer) invokes local AI coding CLIs (`claude`, `..."
+        },
+        {
+          "file": "references/04_red_team_assessments_lotl_and_soc_ir.md",
+          "line": 69,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "- Immediately after obtaining standard employee credentials or vishing access, both Mandiant Red Teams and threat groups (`APT29`, `FIN11`, `UNC2891`, `UNC39..."
+        },
+        {
+          "file": "references/04_red_team_assessments_lotl_and_soc_ir.md",
+          "line": 84,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "| **`UNC6564` Cloud Identity LOTL (`DeviceCode` / `setIamPolicy`) & `QUIETVAULT`/`PROMPTFLUX` AI Malware (M-Trends 2026)** | `AWS_CLOUDTRAIL` / `GCP_CLOUDAUD..."
+        },
+        {
+          "file": "references/04_red_team_assessments_lotl_and_soc_ir.md",
+          "line": 86,
+          "rule_id": "CI-04",
+          "category": "command_injection",
+          "severity": "medium",
+          "description": "PowerShell 下载并执行",
+          "snippet": "| **ClickFix `Win+R` (`explorer.exe`) Spawning Obfuscated `PowerShell` / `mshta` (M-Trends 2026 p.11)** | `PROCESS_LAUNCH` (Windows Sysmon / EDR) | Parent `r..."
+        },
+        {
+          "file": "references/04_red_team_assessments_lotl_and_soc_ir.md",
+          "line": 87,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "| **Internal SharePoint / GitHub / Confluence Secret-Mining Search Burst (M-Trends 2025 p.75)** | `OFFICE_365` (`SearchQueryPerformed`) / `GITHUB` / `WEB_PRO..."
+        },
+        {
+          "file": "references/05_ot_ics_and_ai_workload_security.md",
+          "line": 57,
+          "rule_id": "CR-02",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "读取 SSH 私钥",
+          "snippet": "| **9. `QUIETVAULT` AI CLI Secret-Stealer Prompt & `PROMPTFLUX`/`PROMPTSTEAL` Malware LLM Calls (M-Trends 2026 p.39)**|`PROCESS_LAUNCH` (Endpoint EDR / Sysmo..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/secops-investigate",
+      "verdict": "high",
+      "files_scanned": 2,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 199,
+          "rule_id": "DS-03",
+          "category": "destructive_ops",
+          "severity": "high",
+          "description": "清空历史/日志以抹除痕迹",
+          "snippet": "- Check for event log clearing (`event_id = 1102` or `wevtutil cl`)."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/secops-triage",
+      "verdict": "critical",
+      "files_scanned": 10,
+      "findings": [
+        {
+          "file": "references/01_keycloak_identity.md",
+          "line": 42,
+          "rule_id": "EX-02",
+          "category": "data_exfiltration",
+          "severity": "critical",
+          "description": "把文件内容发送到外部地址",
+          "snippet": "| **`Keycloak_Container_Suspicious_Java_Child_Process`**<br>*(JVM / Container RCE Shell Spawn)* | `T1059.004` | `LINUX_SYSMON` / `AUDITD`<br>`PROCESS_LAUNCH`..."
+        },
+        {
+          "file": "references/04_endpoint_auditd_vss_and_linux_containers.md",
+          "line": 60,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "| **`Endpoint_Access_Denied_Followed_By_Root_Elevation`**<br>*(AuditD `EACCES` Followed by `sudo su`)* | `T1068`, `T1548.003` | `AUDITD`<br>`$host = $denied...."
+        },
+        {
+          "file": "references/04_endpoint_auditd_vss_and_linux_containers.md",
+          "line": 62,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "### C. Decoding Hex-Encoded AuditD `proctitle` Strings (`7375646F007375` = `sudo su`)"
+        },
+        {
+          "file": "references/04_endpoint_auditd_vss_and_linux_containers.md",
+          "line": 65,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "- **`sudo su`**: `7375646F007375` (`sudo\\x00su`) or `7375646F007375002D` (`sudo\\x00su\\x00-`)"
+        },
+        {
+          "file": "references/04_endpoint_auditd_vss_and_linux_containers.md",
+          "line": 74,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "| **`Linux_Root_Elevation_Attribution_Sysmon_Auditd`**<br>*(`sudo su` Attribution via `CurrentDirectory`, `auid` & Hex `proctitle`)* | `T1548.003` | `LINUX_S..."
+        }
+      ]
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/spanner-basics",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/cloud/workload-manager-basics",
+      "verdict": "clean",
+      "files_scanned": 10,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/developers/finding-google-skills",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/developers/migrate-to-rust",
+      "verdict": "clean",
+      "files_scanned": 4,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/developers/retrieving-developer-knowledge",
+      "verdict": "clean",
+      "files_scanned": 5,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/identity/dpop-adoption",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/identity/sign-in-with-google-web",
+      "verdict": "clean",
+      "files_scanned": 6,
+      "findings": []
+    },
+    {
+      "collection": "google/skills",
+      "skill": "skills/platform-devices/litert-google-tensor",
+      "verdict": "high",
+      "files_scanned": 17,
+      "findings": [
+        {
+          "file": "references/troubleshooting.md",
+          "line": 23,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "`python3 -m venv ...` fails: `ensurepip is not available`                                                                                                   |..."
+        },
+        {
+          "file": "references/troubleshooting.md",
+          "line": 37,
+          "rule_id": "PE-01",
+          "category": "privilege_escalation",
+          "severity": "high",
+          "description": "使用 sudo 执行命令",
+          "snippet": "`libc++.so.1: cannot open shared object file` while importing/compiling                                                                                     |..."
+        }
+      ]
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/brainstorming",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/diagnosing-superpowers",
+      "verdict": "clean",
+      "files_scanned": 20,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/dispatching-parallel-agents",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/executing-plans",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/finishing-a-development-branch",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/receiving-code-review",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/requesting-code-review",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/subagent-driven-development",
+      "verdict": "clean",
+      "files_scanned": 11,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/systematic-debugging",
+      "verdict": "critical",
+      "files_scanned": 6,
+      "findings": [
+        {
+          "file": "SKILL.md",
+          "line": 98,
+          "rule_id": "CR-05",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "访问系统钥匙串/凭据管理器",
+          "snippet": "echo \"=== Keychain state: ===\""
+        },
+        {
+          "file": "SKILL.md",
+          "line": 99,
+          "rule_id": "CR-05",
+          "category": "credential_theft",
+          "severity": "critical",
+          "description": "访问系统钥匙串/凭据管理器",
+          "snippet": "security list-keychains"
+        }
+      ]
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/test-driven-development",
+      "verdict": "clean",
+      "files_scanned": 2,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/using-git-worktrees",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/using-superpowers",
+      "verdict": "clean",
+      "files_scanned": 8,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/verification-before-completion",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/writing-plans",
+      "verdict": "clean",
+      "files_scanned": 1,
+      "findings": []
+    },
+    {
+      "collection": "obra/superpowers",
+      "skill": "skills/writing-skills",
+      "verdict": "high",
+      "files_scanned": 9,
+      "findings": [
+        {
+          "file": "references/anthropic-best-practices.md",
+          "line": 395,
+          "rule_id": "EX-03",
+          "category": "data_exfiltration",
+          "severity": "high",
+          "description": "向硬编码外部主机发起网络外联",
+          "snippet": "- Advanced features (batch operations, webhooks)"
+        }
+      ]
+    }
+  ]
+}
